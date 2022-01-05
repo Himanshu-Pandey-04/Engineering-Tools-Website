@@ -1,5 +1,3 @@
-from typing import Sequence
-from django.forms import forms
 from django import forms
 
 #  methods 1, 2, 3, 5, 7, 8, 14

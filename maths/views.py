@@ -1,7 +1,4 @@
-from typing import Sequence
-from django import forms
 from django.shortcuts import render
-from numpy import number
 from .forms import (
     Single, Chinese_Remainder_Theorem, Double,
     Determinant, Josephus_Problem, Permutations, 
@@ -16,20 +13,62 @@ def home(request):
 def maths(request):
     return render(request, 'maths/maths.html', {})
 
-def calculation(request, funcName, *args):
+
+def calculation(request, funcName):
     Func_Lib = { 
-        "Sieve": Sieve, "Prime_Factors": Prime_Factors, "Prime_Check": Prime_Check, "Co_Prime": Co_Prime, "Signum": Signum, "Chinese_Remainder_Theorem": Chinese_Remainder_Theorem, "Euler_Totient_Function": Euler_Totient_Function, "Inverse_Euler_Totient_Function": Inverse_Euler_Totient_Function, "Determinant": Determinant, "Last_Digit_Determiner": Last_Digit_Determiner, "Josephus_Problem": Josephus_Problem, "Permutations": Permutations, "Combinations": Combinations, "Fibonacci": Fibonacci, "ModAll": ModAll 
+        "sieve": Sieve, "prime_factors": Prime_Factors, "prime_check": Prime_Check, "co_prime": Co_Prime, "signum": Signum, "chinese_remainder_theorem": Chinese_Remainder_Theorem, "euler_totient_function": Euler_Totient_Function, "inverse_euler_totient_function": Inverse_Euler_Totient_Function, "determinant": Determinant, "last_digit_determiner": Last_Digit_Determiner, "josephus_problem": Josephus_Problem, "permutations": Permutations, "combinations": Combinations, "fibonacci": Fibonacci, "modall": ModAll 
     }
-    result = []
-    form = Single(request.POST or None)
+    Dict = {
+        'function_name': {
+            'docS': 'tooltip',
+            'params': [{
+                'p1': ['int', 'tooltip']
+            },
+            {
+                'p2': ['int', 'tooltip']
+                }
+            ],
+            'returns': {
+                'r1': ['list', 'tooltip']
+            },
+            'tags': ['tag1', 'tag2']
+        }
+    }
+    dataType = { 'int' : 'number', 'str' : 'text'}
+    result, code, number = [], [], []
+    for i in range(len(Dict['function_name']['params'])):
+        dataT = Dict['function_name']['params'][i][f'p{i+1}'][0]
+        code.append(f'<input name="p{i}" type="{dataType[dataT]}"/><br>')
     if request.method == 'POST':
-        number = request.POST.get('number')
-        result = Func_Lib[funcName](*args)
+        for i in range(len(Dict['function_name']['params'])):
+            number.append(request.POST[f'p{i}'])
+        print(number)
+        result = Func_Lib[funcName](*number)
     context = {
-        'form':form,
-        'result': result
+        'htmlcode': code,
+        'result': result,
     }
     return render(request, 'maths/sieve.html', context)
+
+
+# def calculation(request, funcName):
+#     Func_Lib = { 
+#         "sieve": [Sieve, Double], "prime_factors": Prime_Factors, "prime_check": Prime_Check, "co_prime": Co_Prime, "signum": Signum, "chinese_remainder_theorem": Chinese_Remainder_Theorem, "euler_totient_function": Euler_Totient_Function, "inverse_euler_totient_function": Inverse_Euler_Totient_Function, "determinant": Determinant, "last_digit_determiner": Last_Digit_Determiner, "josephus_problem": Josephus_Problem, "permutations": Permutations, "combinations": Combinations, "fibonacci": Fibonacci, "modall": ModAll 
+#     }
+#     result = []
+#     form = Func_Lib[funcName][1](request.POST or None)
+#     # 1 form, 
+#     if funcName == 'sieve':
+#         form.fields['number2'].required = False
+#     if request.method == 'POST':
+#         # multiple forms, 
+#         number = request.POST.get('number1')
+#         result = Func_Lib[funcName][0](int(number))
+#     context = {
+#         'form':form,
+#         'result': result
+#     }
+#     return render(request, 'maths/sieve.html', context)
 
 #region Functions
 

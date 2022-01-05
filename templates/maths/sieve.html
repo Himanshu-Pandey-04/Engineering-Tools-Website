@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+Sieve calculation
+{% endblock title %}
+
+{% block content %}
+
+{% if htmlcode != None %}
+<div class="container-fluid mt-5">
+    <div class="row mt-5">
+        <form action="" method="POST">
+            {% csrf_token %}
+            {% for code in htmlcode %}
+            {{ code|safe }}
+            {% endfor %}
+            <button type="submit" class='btn btn-primary mt-3'>Result</button>
+        </form>
+    </div>
+    <h4>{{result}}</h4>
+</div>
+{% endif %}
+
+<!-- <div class="container-fluid mt-5">
+    <div class="row mt-5">
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit" class='btn btn-primary mt-3'>Result</button>
+        </form>
+    </div>
+    <h4>{{result}}</h4>
+</div> -->
+
+{% endblock content %}

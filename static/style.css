@@ -1,0 +1,93 @@
+
+body {
+    min-width: 800px;
+    min-height: 800px;
+}
+
+.header1 {
+    font-size: 20px;
+    color: blue;
+}
+
+main {
+    display: flex;
+    flex-wrap: nowrap;
+    height: 100vh;
+    max-height: 100vh;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+/* #region Navbar */
+
+.navbar {
+    width: 100%;
+    height: 70px;
+    background-color: black;
+    color: white;
+}
+
+.navbar a {
+    color: white;
+    font-size: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: 1px solid black;
+}
+
+/* #endregion */
+
+.maindiv {
+    float: left;
+    width: 53vw;
+    height: 90vh;
+    margin-left: 20vw;
+    border: 1px solid black;
+}
+
+/* #region Sidebar */
+
+.sidebar {
+    width: 20vw;
+    height: 90vh;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    float: left;
+    border: 1px solid black;
+    /* z-index: 1; Behind the navbar */
+    padding: 5vh 0 0 2vw;
+    /* box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1); */
+}
+
+.sidebar ul a {
+    text-decoration: none;
+    font-size: 25px;
+    color: black;
+    list-style-type: none;
+}
+
+/* #endregion */
+
+
+/* #region Ads */
+
+.ads {
+    width: 25vw;
+    height: 90vh;
+    border: 1px solid black;
+    float: right;
+}
+
+.ads h1 {
+    font-size: 40px;
+    text-align: center;
+    padding-top: 300px;
+}
+
+/* #endregion */
+
+
+/* #region  */
+
+/* #endregion */

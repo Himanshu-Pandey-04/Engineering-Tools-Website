@@ -31,12 +31,25 @@
 
 <body>
   {% include 'navbar.html' %}
-  {% block content %}
-  {% endblock content %}
-
+  <div class="sidebar">
+    <ul class="subjectlink">
+      <a href="#"><li class="subject">Maths</li></a>
+      <a href="#"><li class="subject">LDCO</li></a>
+      <a href="#"><li class="subject">BCN</li></a>
+    </ul>
+  </div>
+  <div class="ads">
+    <h1>ADS</h1>
+  </div>
+  <div class="maindiv">
+    {% block content %}
+    {% endblock content %}
+  </div>
   <!-- Bootstrap js -->
+
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js"></script>
+  <script src="{% static 'js/index.js' %}"></script>
 </body>
 
 </html>
