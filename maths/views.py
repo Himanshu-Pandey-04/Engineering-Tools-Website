@@ -18,23 +18,93 @@ def calculation(request, funcName):
     Func_Lib = { 
         "sieve": Sieve, "prime_factors": Prime_Factors, "prime_check": Prime_Check, "co_prime": Co_Prime, "signum": Signum, "chinese_remainder_theorem": Chinese_Remainder_Theorem, "euler_totient_function": Euler_Totient_Function, "inverse_euler_totient_function": Inverse_Euler_Totient_Function, "determinant": Determinant, "last_digit_determiner": Last_Digit_Determiner, "josephus_problem": Josephus_Problem, "permutations": Permutations, "combinations": Combinations, "fibonacci": Fibonacci, "modall": ModAll 
     }
+    
     Dict = {
-        'function_name': {
-            'docS': 'tooltip',
-            'params': [{
-                'p1': ['int', 'tooltip']
-            },
-            {
-                'p2': ['int', 'tooltip']
-                }
-            ],
-            'returns': {
-                'r1': ['list', 'tooltip']
-            },
-            'tags': ['tag1', 'tag2']
-        }
+        'Sieve': {
+            'docS': 'SIEVE OF ERASTOSTHENES :- Computes Sieve of Eratosthenes',
+            'params': {'Number': 'number'},
+            'returns': {'r1': 'range'}
+        },
+        'Prime_Factors': {
+            'docS': 'PRIME FACTORS :- Computes List of Prime Factors',
+            'params': {'Number': 'number'},
+            'returns': {'r1': 'range'}
+        },
+        'Prime_Check': {
+            'docS': 'PRIME CHECK :- Checks if a Number is Prime / Composite / Neither Prime nor Composite',
+            'params': {'Number': 'number'},
+            'returns': {'r1': 'number'}
+        },
+        'Co_Prime': {
+            'docS': 'CO-PRIME :- Checks Whether Given Pair of Numbers are Co-Prime',
+            'params': {'Number_1': 'number', 'Number_2': 'number'},
+            'returns': {'r1': 'unknown'}
+        },
+        'Signum': {
+            'docS': 'SIGNUM :- Checks Sign of Number   Range = { -1, 0, 1 }',
+            'params': {'Number': 'number'},
+            'returns': {'r1': 'number'}
+        },
+        'Chinese_Remainder_Theorem': {
+            'docS': 'CHINESE REMAINDER THEOREM :- Implements CRT on Given Divisor and Remainder Arrays',
+            'params': {'Divisor_Array': 'range', 'Remainder_Array': 'range'},
+            'returns': {'r1': 'number'}
+        },
+        'Euler_Totient_Function': {
+            'docS': 'EULER TOTIENT FUNCTION :- Computes ETF for given Number',
+            'params': {'Number': 'number'},
+            'returns': {'r1': 'number'}
+        },
+        'Inverse_Euler_Totient_Function': {
+            'docS': 'INVERSE EULER TOTIENT FUNCTION :- Computes IETF for given Number',
+            'params': {'Number': 'number'},
+            'returns': {'r1': 'number'}
+        },
+        'Determinant': {
+            'docS': 'JUST ONE LINE DETERMINANT CALCULATOR :- Calculates Determinant of given Matrix',
+            'params': {'Mat': 'range'},
+            'returns': {'r1': 'number'}
+        },
+        'Last_Digit_Determiner': {
+            'docS': 'PRINTS LAST DIGIT OF EXPONENTIAL RESULT :- Determines Last Digit of Result (Base ^ Exp)',
+            'params': {'Base': 'number', 'Exponent': 'number'},
+            'returns': {'r1': 'number'}
+        },
+        'Josephus_Problem': {
+            'docS': 'JOSEPHUS PROBLEM :- Theoretical problem related to a certain counting-out game',
+            'params': {'Step': 'number', 'Sequence': 'range'},
+            'returns': {'r1': 'number'}
+        },
+        'Permutations': {
+            'docS': 'PERMUTATIONS :- Returns List of All Possible Permutations of Input Data',
+            'params': {'Elements': 'range',
+             'Positions': 'number',
+             'Allow_Repetitions': 'unknown'},
+            'returns': {'r1': 'range'}
+        },
+        'Combinations': {
+            'docS': 'COMBINATIONS :- Returns List of All Possible Combinations of Input Data',
+            'params': {'Elements': 'range', 'Positions': 'number'},
+            'returns': {'r1': 'range'}
+        },
+        'Fibonacci': {
+            'docS': 'FIBONACCI :- Provides fibonacci result upto 998\n    n -> depicts element position in the fibonacci sequence\n    ',
+            'params': {'n': 'number'},
+            'returns': {'r1': 'number'}
+        },
+        'ModAll': {
+            'docS': "MODALL :- Performs modulus(%) operation on given elements in 'List' w.r.t. 'Number'",
+            'params': {'List': 'range', 'Number': 'number'},
+            'returns': {'r1': 'range'}
+        },
+        'Congruent_Modulo': {
+            'docS': "CONGRUENT_MODULO :- Groups 'List' elements giving identical modulus value w.r.t. 'Number'",
+            'params': {'List': 'range', 'N': 'number'},
+            'returns': {'r1': 'unknown'}}
     }
-    dataType = { 'int' : 'number', 'str' : 'text'}
+    
+    
+    # dataType = { 'int' : 'number', 'str' : 'text' }
     result, code, number = [], [], []
     for i in range(len(Dict['function_name']['params'])):
         dataT = Dict['function_name']['params'][i][f'p{i+1}'][0]
