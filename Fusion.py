@@ -27,7 +27,7 @@ def MathDecor(Function, *args, **kwargs):
 
 # METHOD 1 :
 @MathDecor
-def Sieve(Number : int):
+def Sieve(Number : int):# -> list:
     """SIEVE OF ERASTOSTHENES :- Computes Sieve of Eratosthenes"""
 
     List, Number = [i for i in range(2,Number+1)], int(round(float(Number)))
@@ -60,10 +60,10 @@ def Prime_Check(Number : int):
     Number = int(float(Number))
     if Number<2: return -1                                                                                # Return -1 if Number is 1,0 or negative
    
-    for i in range(2,int(Number**0.5)+1):
+    for i in range(Number**0.5+1):
         if Number%i==0: return 0      # Return 0 if Number is Composite
    
-    return 1                     # Return 1 if Number is Prime
+    return 1                          # Return 1 if Number is Prime
 
 
 
@@ -142,11 +142,6 @@ def Inverse_Euler_Totient_Function(Number : int):
 @MathDecor
 def Determinant(Mat : list):
     """JUST ONE LINE DETERMINANT CALCULATOR :- Calculates Determinant of given Matrix"""
-    import os
-    try: import numpy as np
-    except Exception:
-        os.system('pip install numpy')
-        import numpy as np
     return Mat[0][0] if len(Mat)==1 else sum([Mat[ignoR][0] * (-1)**ignoR * Determinant(np.concatenate((Mat[:ignoR,1:],Mat[ignoR+1:,1:]))) for ignoR in range(len(Mat))])
     
 
@@ -206,28 +201,47 @@ def Combinations(Elements : list, Positions=-1):
 FibLib = {0:0}
 @MathDecor
 def Fibonacci(n):
-    """THIS FUNCTION PROVIDES FIBONACCI RESULT UPTO 998"""
+    """FIBONACCI :- Provides fibonacci result
+    n -> depicts element position in the fibonacci sequence
+    """
     if n<2: return n
     if FibLib.get(n-1) is None: FibLib[n-1] = Fibonacci(n-1)
     return FibLib[n-1] + FibLib[n-2]
 
 
+
+
 # METHOD 15 :
 @MathDecor
 def ModAll(List, Number):
-  return [i%Number for i in List]
+    """MODALL :- Performs modulus(%) operation on given elements in 'List' w.r.t. 'Number'"""
+    return [i%Number for i in List]
 
-#print(ModAll([783, -217, 464, -108, 367], 11))
-
-
-
+# print(ModAll([783, -217, 464, -108, 367], 11))
 
 
 
-#import StrCollection, MathCollection
+# METHOD 16 :
+@MathDecor
+def Congruent_Modulo(List, N):
+    """CONGRUENT_MODULO :- Groups 'List' elements giving identical modulus value w.r.t. 'Number'"""
+    ModDict = {}
+    for i,Ele in enumerate([i%N for i in List]):  ModDict[Ele] = ModDict.get(Ele, []) + [List[i]]
+
+    return ModDict
 
 
-#P = StrCollection.Collections()
+# print(ModAll([783, -217, 464, -108, 367], 11))
+
+
+
+
+
+
+# import StrCollection, MathCollection
+
+
+# P = StrCollection.Collections()
 Func_Lib = { "1" : Sieve, "2": Prime_Factors, "3": Prime_Check, "4": Co_Prime, "5": Signum, "6": Chinese_Remainder_Theorem, "7": Euler_Totient_Function, "8": Inverse_Euler_Totient_Function, "9": Determinant, "10": Last_Digit_Determiner, "11": Josephus_Problem, "12": Permutations, "13": Combinations, "14": Fibonacci, "15": ModAll }
 
 def Get_Funcs_Dict(): return Func_Lib
