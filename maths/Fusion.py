@@ -1,4 +1,4 @@
-
+import numpy as np
 
 def DTC(Value, DT):           # DATA TYPE CONVERTER
     DTs = [int, float, list, tuple, dict]

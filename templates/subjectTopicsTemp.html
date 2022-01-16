@@ -1,9 +1,15 @@
-{% extends "base.html" %}
+{% extends "index.html" %}
 {% load crispy_forms_tags %}
 
 {% block title %}
 Sieve calculation
 {% endblock title %}
+
+{% block bread %}
+    <li class="breadcrumb-item BC"><a href="{% url 'subjects' BC.0 %}">{{ BC.0|title }}</a></li>
+    <li class="breadcrumb-item BC"><a href="{% url 'subjectTopics' BC.0 BC.1 %}">{{ BC.1|title }}</a></li>
+{% endblock bread %}
+
 
 {% block content %}
 

@@ -1,0 +1,23 @@
+{% extends "index.html" %}
+{% load crispy_forms_tags %}
+
+
+{% block title %}
+{{subName}}
+{% endblock title %}
+
+
+{% block bread %}
+<li class="breadcrumb-item BC"><a href="{% url 'subjects' links.0 %}">{{ links.0|title }}</a></li>
+{% endblock bread %}
+
+
+{% block content %}
+
+{% for link in links %}
+  {% if link != links.0 %}
+    <a href="{{link}}/">{{link|title}}</a><br>
+  {% endif %}
+{% endfor %}
+
+{% endblock content %}

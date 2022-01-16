@@ -1,124 +1,136 @@
 from django.shortcuts import render
-from .forms import (
-    Single, Chinese_Remainder_Theorem, Double,
-    Determinant, Josephus_Problem, Permutations, 
-    Combinations, ModAll
-)
-from Fusion import *
+from maths.Fusion import *
 # Create your views here.
 
-def home(request):
-    return render(request, 'base.html', {})
-
-def maths(request):
-    return render(request, 'maths/maths.html', {})
-
-
-def calculation(request, funcName):
-    Func_Lib = { 
-        "sieve": Sieve, "prime_factors": Prime_Factors, "prime_check": Prime_Check, "co_prime": Co_Prime, "signum": Signum, "chinese_remainder_theorem": Chinese_Remainder_Theorem, "euler_totient_function": Euler_Totient_Function, "inverse_euler_totient_function": Inverse_Euler_Totient_Function, "determinant": Determinant, "last_digit_determiner": Last_Digit_Determiner, "josephus_problem": Josephus_Problem, "permutations": Permutations, "combinations": Combinations, "fibonacci": Fibonacci, "modall": ModAll 
-    }
-    
-    Dict = {
-        'Sieve': {
+Dict = {
+    'maths': {
+        'sieve': {
             'docS': 'SIEVE OF ERASTOSTHENES :- Computes Sieve of Eratosthenes',
             'params': {'Number': 'number'},
-            'returns': {'r1': 'range'}
+            'returns': {'r1': 'list'}
         },
-        'Prime_Factors': {
+        'prime_factors': {
             'docS': 'PRIME FACTORS :- Computes List of Prime Factors',
             'params': {'Number': 'number'},
-            'returns': {'r1': 'range'}
+            'returns': {'r1': 'list'}
         },
-        'Prime_Check': {
+        'prime_check': {
             'docS': 'PRIME CHECK :- Checks if a Number is Prime / Composite / Neither Prime nor Composite',
             'params': {'Number': 'number'},
-            'returns': {'r1': 'number'}
+            'returns': {'r1': 'int'}
         },
-        'Co_Prime': {
+        'co_prime': {
             'docS': 'CO-PRIME :- Checks Whether Given Pair of Numbers are Co-Prime',
             'params': {'Number_1': 'number', 'Number_2': 'number'},
             'returns': {'r1': 'unknown'}
         },
-        'Signum': {
+        'signum': {
             'docS': 'SIGNUM :- Checks Sign of Number   Range = { -1, 0, 1 }',
             'params': {'Number': 'number'},
             'returns': {'r1': 'number'}
         },
-        'Chinese_Remainder_Theorem': {
+        'chinese_remainder_theorem': {
             'docS': 'CHINESE REMAINDER THEOREM :- Implements CRT on Given Divisor and Remainder Arrays',
             'params': {'Divisor_Array': 'range', 'Remainder_Array': 'range'},
             'returns': {'r1': 'number'}
         },
-        'Euler_Totient_Function': {
+        'euler_totient_function': {
             'docS': 'EULER TOTIENT FUNCTION :- Computes ETF for given Number',
             'params': {'Number': 'number'},
             'returns': {'r1': 'number'}
         },
-        'Inverse_Euler_Totient_Function': {
+        'inverse_euler_totient_function': {
             'docS': 'INVERSE EULER TOTIENT FUNCTION :- Computes IETF for given Number',
             'params': {'Number': 'number'},
             'returns': {'r1': 'number'}
         },
-        'Determinant': {
+        'determinant': {
             'docS': 'JUST ONE LINE DETERMINANT CALCULATOR :- Calculates Determinant of given Matrix',
             'params': {'Mat': 'range'},
             'returns': {'r1': 'number'}
         },
-        'Last_Digit_Determiner': {
+        'last_digit_determiner': {
             'docS': 'PRINTS LAST DIGIT OF EXPONENTIAL RESULT :- Determines Last Digit of Result (Base ^ Exp)',
             'params': {'Base': 'number', 'Exponent': 'number'},
             'returns': {'r1': 'number'}
         },
-        'Josephus_Problem': {
+        'josephus_problem': {
             'docS': 'JOSEPHUS PROBLEM :- Theoretical problem related to a certain counting-out game',
             'params': {'Step': 'number', 'Sequence': 'range'},
             'returns': {'r1': 'number'}
         },
-        'Permutations': {
+        'permutations': {
             'docS': 'PERMUTATIONS :- Returns List of All Possible Permutations of Input Data',
             'params': {'Elements': 'range',
-             'Positions': 'number',
-             'Allow_Repetitions': 'unknown'},
+            'Positions': 'number',
+            'Allow_Repetitions': 'unknown'},
             'returns': {'r1': 'range'}
         },
-        'Combinations': {
+        'combinations': {
             'docS': 'COMBINATIONS :- Returns List of All Possible Combinations of Input Data',
             'params': {'Elements': 'range', 'Positions': 'number'},
             'returns': {'r1': 'range'}
         },
-        'Fibonacci': {
+        'fibonacci': {
             'docS': 'FIBONACCI :- Provides fibonacci result upto 998\n    n -> depicts element position in the fibonacci sequence\n    ',
             'params': {'n': 'number'},
             'returns': {'r1': 'number'}
         },
-        'ModAll': {
+        'modall': {
             'docS': "MODALL :- Performs modulus(%) operation on given elements in 'List' w.r.t. 'Number'",
             'params': {'List': 'range', 'Number': 'number'},
             'returns': {'r1': 'range'}
         },
-        'Congruent_Modulo': {
+        'congruent_modulo': {
             'docS': "CONGRUENT_MODULO :- Groups 'List' elements giving identical modulus value w.r.t. 'Number'",
             'params': {'List': 'range', 'N': 'number'},
-            'returns': {'r1': 'unknown'}}
+            'returns': {'r1': 'unknown'}
+        }
+    },
+    'LDCO': {
+
+    },
+    'BCN': {
+        
     }
-    
-    
-    # dataType = { 'int' : 'number', 'str' : 'text' }
-    result, code, number = [], [], []
-    for i in range(len(Dict['function_name']['params'])):
-        dataT = Dict['function_name']['params'][i][f'p{i+1}'][0]
-        code.append(f'<input name="p{i}" type="{dataType[dataT]}"/><br>')
+}
+
+Func_Lib = { 
+    "sieve": Sieve, "prime_factors": Prime_Factors, "prime_check": Prime_Check, "co_prime": Co_Prime, "signum": Signum, "chinese_remainder_theorem": Chinese_Remainder_Theorem, "euler_totient_function": Euler_Totient_Function, "inverse_euler_totient_function": Inverse_Euler_Totient_Function, "determinant": Determinant, "last_digit_determiner": Last_Digit_Determiner, "josephus_problem": Josephus_Problem, "permutations": Permutations, "combinations": Combinations, "fibonacci": Fibonacci, "modall": ModAll 
+}
+
+def home(request):
+    return render(request, 'index.html', {})
+
+
+def subject(request, subName):
+    links = []
+    links.append(subName)
+    for key in Dict[subName].keys(): 
+        links.append(key)
+    context = {
+        'links': links,
+    }
+    return render(request, 'subjectTemp.html', context)
+
+
+def calculation(request, subName, funcName):
+    result, breadcrumbs, code, number = [], [], [], []
+    breadcrumbs.append(subName)
+    breadcrumbs.append(funcName)
+    for key, value in Dict[subName][funcName]['params'].items():
+        code.append(f'<input name="{key}" type="{value}"/><br>')
     if request.method == 'POST':
-        for i in range(len(Dict['function_name']['params'])):
-            number.append(request.POST[f'p{i}'])
-        print(number)
+        for key, value in Dict[subName][funcName]['params'].items():
+            number.append(request.POST[key])
+        print(type(number[0]))
         result = Func_Lib[funcName](*number)
     context = {
         'htmlcode': code,
         'result': result,
+        'BC' : breadcrumbs,
     }
-    return render(request, 'maths/sieve.html', context)
+    return render(request, 'subjectTopicsTemp.html', context)
 
 
 # def calculation(request, funcName):
