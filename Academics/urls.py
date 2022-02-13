@@ -20,6 +20,5 @@ from .views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name='home'),
-    path('<str:subName>/', subject, name='subjects'),
     path('<str:subName>/<str:funcName>/', calculation, name='subjectTopics'),
 ]

@@ -1,9 +1,9 @@
 from django.shortcuts import render
-from maths.Fusion import *
+from Fusion import *
 # Create your views here.
 
 Dict = {
-    'maths': {
+    'Maths': {
         'sieve': {
             'docS': 'SIEVE OF ERASTOSTHENES :- Computes Sieve of Eratosthenes',
             'params': {'Number': 'number'},
@@ -99,19 +99,12 @@ Func_Lib = {
     "sieve": Sieve, "prime_factors": Prime_Factors, "prime_check": Prime_Check, "co_prime": Co_Prime, "signum": Signum, "chinese_remainder_theorem": Chinese_Remainder_Theorem, "euler_totient_function": Euler_Totient_Function, "inverse_euler_totient_function": Inverse_Euler_Totient_Function, "determinant": Determinant, "last_digit_determiner": Last_Digit_Determiner, "josephus_problem": Josephus_Problem, "permutations": Permutations, "combinations": Combinations, "fibonacci": Fibonacci, "modall": ModAll 
 }
 
+
 def home(request):
-    return render(request, 'index.html', {})
-
-
-def subject(request, subName):
-    links = []
-    links.append(subName)
-    for key in Dict[subName].keys(): 
-        links.append(key)
     context = {
-        'links': links,
+        'links': Dict,
     }
-    return render(request, 'subjectTemp.html', context)
+    return render(request, 'index.html', context)
 
 
 def calculation(request, subName, funcName):

@@ -25,13 +25,86 @@ body {
     /* border: 1px solid black; */
 }
 
+.search-input {
+    border-radius: 50px;
+}
+
+.search-btn {
+    background-color: black;
+    color: white;
+    border-radius: 50px;
+}
+
+/* #endregion */
+
+
+/* #region Sidebar */
+
+.sidebar {
+    width: 20vw;
+    height: 100%;
+    padding: 15px 20px;
+    color: white;
+    background-color:black;
+    /* border: 1px solid black; */
+}
+
+.Subjects {
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+    background-color: #212529;
+    width: 100%;
+    padding: 10px 0;
+    margin-bottom: 5px;
+}
+
+.Subjects:hover {
+    color: white;
+}
+
+.Subjects:active, .Subjects:target {
+    border: 2px solid white;
+}
+
+.menu {
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+    display: none;
+    list-style: none;
+    /* border: 1px solid white; */
+}
+
+.menu li {
+    font-size: 18px;
+    /* margin: 5px 0px; */
+    padding: 5px 0px;
+    background-color: #212529;
+    /* border: 1px solid white; */
+    text-align: center;
+}
+
+.menu a {
+    text-decoration: none;
+    padding: 5px 20px;
+    color: white;
+    /* border: 1px solid white; */
+}
+
+.menu li:hover {
+    background-color: black;
+}
+
 /* #endregion */
 
 
 /* #region MainDiv */
 
 .mainsection {
-    display: inline-flex;
+    margin: 0px;
+    padding: 0px;
+    display: flex;
     position: relative;
     width: 100%;
     height: calc(100%-70px);
@@ -49,39 +122,25 @@ body {
 
 .breadcrumbs {
     font-size: 25px;
-    background-color: rgb(231, 231, 231);
+    background-color: white;
     padding-right: 5px;
-    padding-top: 5px;
+    padding-top: 15px;
     padding-left: 25px;
+    border: 1px solid black;
 }
 
 .BC a {
     text-decoration: none;
-}
-
-/* #endregion */
-
-
-/* #region Sidebar */
-
-.sidebar {
-    width: 20vw;
-    height: 100%;
-    border: 1px solid black;
-    z-index: 1;
-    /* box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1); */
-}
-
-.sidebar ul a {
-    text-decoration: none;
-    font-size: 25px;
-    color: black;
-    list-style-type: none;
-}
-
-.icon {
     color: white;
-    display: none;
+    padding: 10px;
+    background-color: #212529;
+}
+
+.home-div {
+    height: 100%;
+    font-size: 50px;
+    text-align: center;
+    justify-content: center;
 }
 
 /* #endregion */
@@ -125,7 +184,7 @@ body {
     } */
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1100px) {
     .mainsection {
         display: block;
         overflow-x: auto;
@@ -153,14 +212,32 @@ body {
 /* #endregion */
 
 
+/* #region Footer */
+
 .footer {
+    width: 100%;
+    height: 100%;
     list-style: none;
-    display: inline-flex;
+    /* display: inline-flex; */
+    background-color: #212529;
+    color: white;
+    font-size: 20px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.footer i {
+    font-size: 24px;
+    padding: 0px 20px;
 }
 
 .contactlink {
-    padding: 20px;
+    padding: 10px;
+    /* text-align: center; */
 }
+
+/* #endregion */
+
 
 /* #region  */
 
