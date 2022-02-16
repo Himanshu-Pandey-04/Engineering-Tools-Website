@@ -22,7 +22,7 @@ class Perms_Combs:
 
 
 
-def Permutations(Elements : list, Positions=-1, Allow_Repetitions = False):
+def Permutations(Elements : list, Positions : int = -1, Allow_Repetitions : bool = False):
     """PERMUTATIONS :- Returns List of All Possible Permutations of Input Data"""
     if Positions == 0: return [[]*len(Elements)]
     if Positions == -1: Positions = len(Elements)
@@ -31,7 +31,7 @@ def Permutations(Elements : list, Positions=-1, Allow_Repetitions = False):
 
 
 
-def Combinations(Elements : list, Positions=-1):
+def Combinations(Elements : list, Positions : int = -1):
     """COMBINATIONS :- Returns List of All Possible Combinations of Input Data"""
     return list(map(list, set(map(frozenset, Permutations(Elements, Positions)))))
 

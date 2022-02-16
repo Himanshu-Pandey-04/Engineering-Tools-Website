@@ -167,29 +167,6 @@ def Josephus_Problem(Step : int, Sequence : list) -> int:
 
 
 
-import codes.MATH.combinatorics.Permutations_and_Combinations as PC #import Permutations, Combinations
-# # METHOD 13 :
-# @mngr.MathDecor
-# def Permutations(Elements : list, Positions : int = -1, Allow_Repetitions : bool = False) -> set:
-#     """PERMUTATIONS :- Returns List of All Possible Permutations of Input Data"""
-#     if Positions == 0: return [[]*len(Elements)]
-#     if Positions == -1: Positions = len(Elements)
-
-#     return set((i,)+j for i in Elements for j in set(map(tuple, Permutations(Elements, Positions-1, Allow_Repetitions))) if (True if Allow_Repetitions is True else i not in j))
-
-
-
-
-
-# # METHOD 14 :
-# @mngr.MathDecor
-# def Combinations(Elements : list, Positions : int = -1) -> list:
-#     """COMBINATIONS :- Returns List of All Possible Combinations of Input Data"""
-#     return list(map(list, set(map(frozenset, Permutations(Elements, Positions)))))
-
-
-
-
 
 # METHOD 15 :
 FibLib = {0:0}

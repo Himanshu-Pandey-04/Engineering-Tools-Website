@@ -1,11 +1,3 @@
-
-def DTC(Value, DT):           # DATA TYPE CONVERTER
-    DTs = [int, float, list, tuple, dict]
-    try: return DT(Value)
-    except: return "error"
-      
-
-
 import numpy as np
 
 # METHOD : METHOD TO MAP ANOTHER METHOD TO A LIST OF INPUTS

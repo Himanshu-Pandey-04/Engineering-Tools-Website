@@ -1,4 +1,4 @@
-def addNums(lst1, lst2, *args):
+def addNums(lst1 : list[int], lst2 : list[int], *args):
     """
     Numbers Adder
     =============
