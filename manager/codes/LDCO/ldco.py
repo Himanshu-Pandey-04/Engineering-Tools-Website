@@ -265,7 +265,7 @@ def NS_Code_Converter(nfc : str = None, From : str = None, To : str = None) -> s
 
 
 
-import codes.MATH.combinatorics.Permutations_and_Combinations as PC # import Permutations
+import manager.codes.MATH.combinatorics.Permutations_and_Combinations as PC # import Permutations
 # def Permutations(Elements : str, Positions : int = -1, Allow_Repetitions : bool = False) -> set:
 #     if Positions == 0: return [[]*len(Elements)]
 #     if Positions == -1: Positions = len(Elements)

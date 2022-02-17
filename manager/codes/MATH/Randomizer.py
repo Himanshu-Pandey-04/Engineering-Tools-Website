@@ -80,7 +80,7 @@ def Shuffle_Zip(length : int = -1, Sequence1 : list[str] = ["Coco", "Nova"], Seq
     final = []
     for ele in All:
         Args = ele*(length//len(ele)) + ele[:length%len(ele)]
-        final.append(Randomizer.Shuffler(Args))
+        final.append(Shuffler(Args))
     return list(zip(*final))
 
 
@@ -118,10 +118,10 @@ def Random_Dates(Freq : int = 10, dayR : tuple = (1, 31,), monthR : tuple = (1, 
 
             
 if __name__ == '__main__':
-    R = Randomizer
-    print(R.Shuffler([[66], 789, (7), ["2", 4.077], ("3", 999.999)]))
-    print(R.Random_Element(list(range(6))))
-    print(R.Random_Range(3, 6))
+    # R = Randomizer
+    print(Shuffler([[66], 789, (7), ["2", 4.077], ("3", 999.999)]))
+    print(Random_Element(list(range(6))))
+    print(Random_Range(3, 6))
 
 
 

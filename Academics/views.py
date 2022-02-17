@@ -1,129 +1,36 @@
 from django.shortcuts import render
-from Fusion import *
+from manager.driver import GetDict
 # Create your views here.
 
-Dict = {
-    'Maths': {
-        'sieve': {
-            'docS': 'SIEVE OF ERASTOSTHENES :- Computes Sieve of Eratosthenes',
-            'params': {'Number': 'number'},
-            'returns': {'r1': 'list'}
-        },
-        'prime_factors': {
-            'docS': 'PRIME FACTORS :- Computes List of Prime Factors',
-            'params': {'Number': 'number'},
-            'returns': {'r1': 'list'}
-        },
-        'prime_check': {
-            'docS': 'PRIME CHECK :- Checks if a Number is Prime / Composite / Neither Prime nor Composite',
-            'params': {'Number': 'number'},
-            'returns': {'r1': 'int'}
-        },
-        'co_prime': {
-            'docS': 'CO-PRIME :- Checks Whether Given Pair of Numbers are Co-Prime',
-            'params': {'Number_1': 'number', 'Number_2': 'number'},
-            'returns': {'r1': 'unknown'}
-        },
-        'signum': {
-            'docS': 'SIGNUM :- Checks Sign of Number   Range = { -1, 0, 1 }',
-            'params': {'Number': 'number'},
-            'returns': {'r1': 'number'}
-        },
-        'chinese_remainder_theorem': {
-            'docS': 'CHINESE REMAINDER THEOREM :- Implements CRT on Given Divisor and Remainder Arrays',
-            'params': {'Divisor_Array': 'range', 'Remainder_Array': 'range'},
-            'returns': {'r1': 'number'}
-        },
-        'euler_totient_function': {
-            'docS': 'EULER TOTIENT FUNCTION :- Computes ETF for given Number',
-            'params': {'Number': 'number'},
-            'returns': {'r1': 'number'}
-        },
-        'inverse_euler_totient_function': {
-            'docS': 'INVERSE EULER TOTIENT FUNCTION :- Computes IETF for given Number',
-            'params': {'Number': 'number'},
-            'returns': {'r1': 'number'}
-        },
-        'determinant': {
-            'docS': 'JUST ONE LINE DETERMINANT CALCULATOR :- Calculates Determinant of given Matrix',
-            'params': {'Mat': 'range'},
-            'returns': {'r1': 'number'}
-        },
-        'last_digit_determiner': {
-            'docS': 'PRINTS LAST DIGIT OF EXPONENTIAL RESULT :- Determines Last Digit of Result (Base ^ Exp)',
-            'params': {'Base': 'number', 'Exponent': 'number'},
-            'returns': {'r1': 'number'}
-        },
-        'josephus_problem': {
-            'docS': 'JOSEPHUS PROBLEM :- Theoretical problem related to a certain counting-out game',
-            'params': {'Step': 'number', 'Sequence': 'range'},
-            'returns': {'r1': 'number'}
-        },
-        'permutations': {
-            'docS': 'PERMUTATIONS :- Returns List of All Possible Permutations of Input Data',
-            'params': {'Elements': 'range',
-            'Positions': 'number',
-            'Allow_Repetitions': 'unknown'},
-            'returns': {'r1': 'range'}
-        },
-        'combinations': {
-            'docS': 'COMBINATIONS :- Returns List of All Possible Combinations of Input Data',
-            'params': {'Elements': 'range', 'Positions': 'number'},
-            'returns': {'r1': 'range'}
-        },
-        'fibonacci': {
-            'docS': 'FIBONACCI :- Provides fibonacci result upto 998\n    n -> depicts element position in the fibonacci sequence\n    ',
-            'params': {'n': 'number'},
-            'returns': {'r1': 'number'}
-        },
-        'modall': {
-            'docS': "MODALL :- Performs modulus(%) operation on given elements in 'List' w.r.t. 'Number'",
-            'params': {'List': 'range', 'Number': 'number'},
-            'returns': {'r1': 'range'}
-        },
-        'congruent_modulo': {
-            'docS': "CONGRUENT_MODULO :- Groups 'List' elements giving identical modulus value w.r.t. 'Number'",
-            'params': {'List': 'range', 'N': 'number'},
-            'returns': {'r1': 'unknown'}
-        }
-    },
-    'LDCO': {
-
-    },
-    'BCN': {
-        
-    }
-}
-
-Func_Lib = { 
-    "sieve": Sieve, "prime_factors": Prime_Factors, "prime_check": Prime_Check, "co_prime": Co_Prime, "signum": Signum, "chinese_remainder_theorem": Chinese_Remainder_Theorem, "euler_totient_function": Euler_Totient_Function, "inverse_euler_totient_function": Inverse_Euler_Totient_Function, "determinant": Determinant, "last_digit_determiner": Last_Digit_Determiner, "josephus_problem": Josephus_Problem, "permutations": Permutations, "combinations": Combinations, "fibonacci": Fibonacci, "modall": ModAll 
-}
+# Func_Lib = { 
+#     "sieve": Sieve, "prime_factors": Prime_Factors, "prime_check": Prime_Check, "co_prime": Co_Prime, "signum": Signum, "chinese_remainder_theorem": Chinese_Remainder_Theorem, "euler_totient_function": Euler_Totient_Function, "inverse_euler_totient_function": Inverse_Euler_Totient_Function, "determinant": Determinant, "last_digit_determiner": Last_Digit_Determiner, "josephus_problem": Josephus_Problem, "permutations": Permutations, "combinations": Combinations, "fibonacci": Fibonacci, "modall": ModAll 
+# }
 
 
 def home(request):
     context = {
-        'links': Dict,
+        'links': GetDict(),
     }
     return render(request, 'index.html', context)
 
 
 def calculation(request, subName, funcName):
-    result, breadcrumbs, code, number = [], [], [], []
-    breadcrumbs.append(subName)
-    breadcrumbs.append(funcName)
-    for key, value in Dict[subName][funcName]['params'].items():
-        code.append(f'<input name="{key}" type="{value}"/><br>')
-    if request.method == 'POST':
-        for key, value in Dict[subName][funcName]['params'].items():
-            number.append(request.POST[key])
-        print(type(number[0]))
-        result = Func_Lib[funcName](*number)
-    context = {
-        'htmlcode': code,
-        'result': result,
-        'BC' : breadcrumbs,
-    }
-    return render(request, 'subjectTopicsTemp.html', context)
+    # result, breadcrumbs, code, number = [], [], [], []
+    # breadcrumbs.append(subName)
+    # breadcrumbs.append(funcName)
+    # for key, value in getDict[subName][funcName]['params'].items():
+    #     code.append(f'<input name="{key}" type="{value}"/><br>')
+    # if request.method == 'POST':
+    #     for key, value in getDict[subName][funcName]['params'].items():
+    #         number.append(request.POST[key])
+    #     print(type(number[0]))
+    #     result = getFunc[funcName](*number)
+    # context = {
+    #     'htmlcode': code,
+    #     'result': result,
+    #     'BC' : breadcrumbs,
+    # }
+    return render(request, 'subjectTopicsTemp.html', {})
 
 
 # def calculation(request, funcName):
