@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from manager.driver import GetDict
+from driver import GetDict
 # Create your views here.
 
 # Func_Lib = { 

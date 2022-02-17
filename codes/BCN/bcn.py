@@ -6,7 +6,7 @@ def TimeIt(stmts, setups, numbers):
 
 
 
-import manager.codes.LDCO.ldco as ldco
+import codes.LDCO.ldco as ldco
 from textwrap import wrap
 import math as m
 

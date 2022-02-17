@@ -1,5 +1,5 @@
 import numpy as np
-import manager.codes.MATH.manager as mngr
+from codes.MATH import manager as mngr
 
     
 

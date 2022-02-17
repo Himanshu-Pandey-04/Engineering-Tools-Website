@@ -12,7 +12,7 @@ import sys, os, re
 def GetDict():
     functions = {}
     codeFiles = []
-    codes = r'manager\codes'
+    codes = r'.\codes'
 
 
     # In[6]:
@@ -130,24 +130,6 @@ def GetDict():
 
     return Dict
 
-
-# In[21]:
-
-
-# import pickle
-# path = "manager"
-# pickle.dump(Dict, open("funcDict.pkl", 'wb'))
-
-
-# In[19]:
-
-
-# dict = pickle.load(open("funcDict.pkl", 'rb'))
-# dict
-
-
-# In[ ]:
-
-
-
+if __name__=="__main__":
+    print(GetDict())
 
