@@ -49,7 +49,7 @@ Expression Reduction -- Algebraic Method / (Truth Table / K-Map)
 #region    ###############     BINARY ARITHMETIC    ###############
     
     
-def Format(Numbers_List : list) -> str:
+def Igr_Format(Numbers_List : list) -> str:
     """Returns All Numbers with Uniform Length"""
     
     if isinstance(Numbers_List, str): Numbers_List = Numbers_List.split()
@@ -65,7 +65,7 @@ def Binary_Adder (Numbers_List: list, Base_System : int = 10) -> str:
     """PERFORMS ADDITION ON A LIST OF NUMBERS IN BASE SYSTEM Base_System"""
     
     Result, Carry = "", 0
-    Numbers = Format(Numbers_List)
+    Numbers = Igr_Format(Numbers_List)
     MaxLen, Len = len(Numbers[0]), len(Numbers)  
     
     for col in range(MaxLen-1, -1, -1):
@@ -85,7 +85,7 @@ def Binary_Adder (Numbers_List: list, Base_System : int = 10) -> str:
 
 # Brute force
 def Binary_Subtractor(Minuend : str, Subtrahend : str, Borrow : int = 0) -> str:
-    Minuend, Subtrahend = Format([Minuend, Subtrahend])
+    Minuend, Subtrahend = Igr_Format([Minuend, Subtrahend])
     
     Result = ''
     for i in range(len(Minuend)-1, -1, -1):
@@ -105,7 +105,7 @@ def Binary_Subtractor(Minuend : str, Subtrahend : str, Borrow : int = 0) -> str:
 
 # Using 2s Compliment for negative numbers
 def Binary_Subtractor_2(Minuend : str, Subtrahend : str) -> str:
-    Minuend, Subtrahend = Format([Minuend, Subtrahend])
+    Minuend, Subtrahend = Igr_Format([Minuend, Subtrahend])
     return str(int(Binary_Adder([Minuend, _2sCOMPLIMENT(Subtrahend)], 2)))
 
 
@@ -146,13 +146,14 @@ def Binary_Division(Dividend : str, Divisor : str) -> tuple:
 # `Inter NS Conversion` + `Inter Codes Conversion` + `NS <-> Code Conversion`
 
 
+import imp
 import math as m
 import textwrap as tw
 
 
 
-def ChrToVal(N): return N - (48 if N in range(48, 58) else 55 if N in range(65, 91) else 61)
-def ValToChr(N): return chr(N + (48 if N in range(10) else 55 if N in range(10, 37) else 61))
+def Igr_ChrToVal(N): return N - (48 if N in range(48, 58) else 55 if N in range(65, 91) else 61)
+def Igr_ValToChr(N): return chr(N + (48 if N in range(10) else 55 if N in range(10, 37) else 61))
 
 
 def Print_List(Message = 'Choice'):
@@ -182,13 +183,13 @@ def Binary_To_Gray(Number : str, BTG : bool = True) -> str:
 # X to Decimal NS
 def X_To_Decimal(nfc : str, From : int, nDec : int = 0) -> int:
     for i in range(len(nfc)):
-        nDec += From**(len(nfc)-1-i) * ChrToVal(ord(nfc[i]))
+        nDec += From**(len(nfc)-1-i) * Igr_ChrToVal(ord(nfc[i]))
     return nDec
 
 # Decimal to X NS   
 def Decimal_To_X(nDec : int, to : int, conv : str = "") -> str:
     while(nDec != 0):
-        conv = ValToChr(int(nDec%to)) + conv
+        conv = Igr_ValToChr(int(nDec%to)) + conv
         nDec//=to
     return conv
 
@@ -265,34 +266,8 @@ def NS_Code_Converter(nfc : str = None, From : str = None, To : str = None) -> s
 
 
 
-import codes.MATH.combinatorics.Permutations_and_Combinations as PC # import Permutations
-# def Permutations(Elements : str, Positions : int = -1, Allow_Repetitions : bool = False) -> set:
-#     if Positions == 0: return [[]*len(Elements)]
-#     if Positions == -1: Positions = len(Elements)
-
-#     return set((i,)+j for i in Elements for j in set(map(tuple, Permutations(Elements, Positions-1, Allow_Repetitions))) if (True if Allow_Repetitions is True else i not in j))
-
-
-
-
-
-
-def Split(String : str, Splitters, KeepSplitters = False, StripElements = False):
-    try:
-        String = String + Splitters[0]
-        SplitPos = [-1] + [pos for pos, ele in enumerate(String) if ele in Splitters] + [len(String)-1]
-
-        List = []
-        for i in range(len(SplitPos)-1):
-            if SplitPos[i]+1 != SplitPos[i+1]:
-                Ele = String[SplitPos[i]+1 : SplitPos[i+1]]
-                List.append(Ele.strip() if StripElements is True else Ele)
-
-            if KeepSplitters is True and i<len(SplitPos)-2: List.append(String[SplitPos[i+1]])
-
-        return List[:-1 if KeepSplitters is not True else -2]
-        
-    except: return -1
+import codes.MATH.combinatorics.Permutations_and_Combinations as PC
+import codes.DS.Strings.Add_Ons as ao
 
 
 
@@ -419,7 +394,7 @@ class Exp_Evaluator:
 
 
         Exp = Exp.translate(Exp.maketrans('×÷', '*/'))
-        Exp = Split(Exp, list(Precedence.keys())+['(', ')'], True, True)
+        Exp = ao.Split(Exp, list(Precedence.keys())+['(', ')'], True, True)
         
 
         for ele in Exp:
@@ -486,7 +461,7 @@ def Propositional_Truth_Table(Exp : str = "((pvqvy)^~q)>r=t=s") -> None:
 
 
 if __name__ == '__main__':
-    print(Format([10, '1060', 1000]))
+    print(Igr_Format([10, '1060', 1000]))
 
 
 

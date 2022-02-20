@@ -10,8 +10,6 @@
 //       }
 //     ],
 
-const { withTheme } = require("styled-components");
-
 //       'returns': {
 //           'r1': ['list', 'tooltip']
 //       },

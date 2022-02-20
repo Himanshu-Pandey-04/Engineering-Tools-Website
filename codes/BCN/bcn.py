@@ -1,4 +1,4 @@
-def TimeIt(stmts, setups, numbers):
+def Igr_TimeIt(stmts, setups, numbers):
     from timeit import timeit as t
     
     Ls, LS, Ln = len(stmts), len(setups), len(numbers)
@@ -7,7 +7,7 @@ def TimeIt(stmts, setups, numbers):
 
 
 import codes.LDCO.ldco as ldco
-from textwrap import wrap
+import textwrap as tw
 import math as m
 
 
@@ -36,7 +36,7 @@ def CRC_Decoder(Data : str, Divisor : str) -> str:
 def _1sComp_CheckSum_Generator(Data_List : list[str]) -> list[str]:
     Sum = ldco.NS_Code_Converter(str(sum(map(int, Data_List))), "10", "2")
     Size = int(m.log(max(Data_List), 2))
-    while len(Sum)>Size: Sum = ldco.Binary_Adder(wrap(Sum.zfill(len(Sum)% Size), Size), 2)
+    while len(Sum)>Size: Sum = ldco.Binary_Adder(tw.wrap(Sum.zfill(len(Sum)% Size), Size), 2)
     Sum = ldco._1sCOMPLIMENT(Sum.zfill(Size))
     
     return Data_List + [ldco.NS_Code_Converter(Sum, "2", "10")]
@@ -49,7 +49,7 @@ def _1sComp_CheckSum_Checker(Data_List : list[str]) -> list[str]:
     Sum = ldco.NS_Code_Converter(sum(map(int, Data_List)), 10, 2)
     
     Size = int(m.log(max(Data_List), 2))
-    while len(str(Sum))>Size: Sum = ldco.Binary_Adder(wrap(Sum, Size), 2)
+    while len(str(Sum))>Size: Sum = ldco.Binary_Adder(tw.wrap(Sum, Size), 2)
     
     Sum = ldco._1sCOMPLIMENT(str(Sum).zfill(Size))
     
@@ -65,7 +65,7 @@ def _1sComp_CheckSum_Checker(Data_List : list[str]) -> list[str]:
 #region    ###############     HAMMING CODE, ERROR DETECTION AND CORRECTION    ###############
 import typing
 
-def hamming_distance(word_1 : list[str], word_2 : list[str] = None) -> int:
+def Hamming_Distance(word_1 : list[str], word_2 : list[str] = None) -> int:
     if not word_1: return
     if word_2 is None: word_2 = [0]*len(word_1)
     try:
@@ -90,7 +90,7 @@ def MHD_ED_EC(word_1 : list[str], word_2 : list[str] = None) -> dict[str, int]:
         2. Number of errors that can be detected
         3. Number of errors that can be corrected
     """
-    d_min = hamming_distance(word_1, word_2)
+    d_min = Hamming_Distance(word_1, word_2)
     return {
         'Minimum hamming distance' : d_min,
         'Number of errors that can be detected'  : max(0, d_min-1),
@@ -98,7 +98,7 @@ def MHD_ED_EC(word_1 : list[str], word_2 : list[str] = None) -> dict[str, int]:
     }
 
 
-#endgregion
+#endregion
 
 
 

@@ -1,10 +1,9 @@
 import numpy as np
-from codes.MATH import manager as mngr
-
+from codes import Decorators as decor
     
 
 # METHOD 1 :
-@mngr.MathDecor
+@decor.MathDecor
 def Congruent_Modulo(List : list, N : int) -> dict:
     """CONGRUENT_MODULO :- Groups 'List' elements giving identical modulus value w.r.t. 'Number'"""
     ModDict = {}
@@ -15,7 +14,7 @@ def Congruent_Modulo(List : list, N : int) -> dict:
 
 
 # METHOD 2 :
-@mngr.MathDecor
+@decor.MathDecor
 def Sieve(Number : int) -> list:
     """SIEVE OF ERASTOSTHENES :- Computes Sieve of Eratosthenes"""
 
@@ -34,7 +33,7 @@ def Sieve(Number : int) -> list:
 
 
 # METHOD 3 :
-@mngr.MathDecor
+@decor.MathDecor
 def Prime_Factors(Number : int) -> list:
     """PRIME FACTORS :- Computes List of Prime Factors"""
     return [i for i in Sieve(int(Number)) if Number%i==0]
@@ -44,7 +43,7 @@ def Prime_Factors(Number : int) -> list:
 
 
 # METHOD 4 :
-@mngr.MathDecor
+@decor.MathDecor
 def Prime_Check(Number : int) -> int:
     """PRIME CHECK :- Checks if a Number is Prime / Composite / Neither Prime nor Composite"""
     Number = int(float(Number))
@@ -64,7 +63,7 @@ def Prime_Check(Number : int) -> int:
 
 
 # METHOD 5 :
-@mngr.MathDecor
+@decor.MathDecor
 def Co_Prime(Number_1 : int, Number_2 : int) -> bool:
     """CO-PRIME :- Checks Whether Given Pair of Numbers are Co-Prime"""
     Number_1, Number_2 = int(float(Number_1)), int(float(Number_2))
@@ -77,7 +76,7 @@ def Co_Prime(Number_1 : int, Number_2 : int) -> bool:
 
 
 # METHOD 6 :
-@mngr.MathDecor
+@decor.MathDecor
 def Signum(Number : int) -> int:
     """SIGNUM :- Checks Sign of Number in Range = { -1, 0, 1 }"""
     return 1 if Number>0 else 0 if Number==0 else -1
@@ -87,7 +86,7 @@ def Signum(Number : int) -> int:
 
 
 # METHOD 7 :
-@mngr.MathDecor
+@decor.MathDecor
 def Chinese_Remainder_Theorem(Divisor_Array : list, Remainder_Array : list) -> int:
     """CHINESE REMAINDER THEOREM :- Implements CRT on Given Divisor and Remainder Arrays"""
     
@@ -108,7 +107,7 @@ def Chinese_Remainder_Theorem(Divisor_Array : list, Remainder_Array : list) -> i
 
 
 # METHOD 8 :
-@mngr.MathDecor
+@decor.MathDecor
 def Euler_Totient_Function(Number : int) -> int:
     """EULER TOTIENT FUNCTION :- Computes ETF for given Number"""
     Counter = 0
@@ -120,7 +119,7 @@ def Euler_Totient_Function(Number : int) -> int:
 
 
 # METHOD 9 :
-@mngr.MathDecor
+@decor.MathDecor
 def Inverse_Euler_Totient_Function(Number : int) -> int:
     """INVERSE EULER TOTIENT FUNCTION :- Computes IETF for given Number"""
     Number = 1
@@ -133,7 +132,7 @@ def Inverse_Euler_Totient_Function(Number : int) -> int:
 
 
 # METHOD 10 :
-@mngr.MathDecor
+@decor.MathDecor
 def Determinant(Mat : list) -> int:
     """JUST ONE LINE DETERMINANT CALCULATOR :- Calculates Determinant of given Matrix"""
     return Mat[0][0] if len(Mat)==1 else sum([Mat[ignoR][0] * (-1)**ignoR * Determinant(np.concatenate((Mat[:ignoR,1:],Mat[ignoR+1:,1:]))) for ignoR in range(len(Mat))])
@@ -143,7 +142,7 @@ def Determinant(Mat : list) -> int:
 
 # METHOD 11 :
 MatN = { 2:[2,4,8,6], 3:[3,9,7,1], 4:[4,6,4,6], 7:[7,9,3,1], 8:[8,4,2,6], 9:[9,1,9,1] }
-@mngr.MathDecor
+@decor.MathDecor
 def Last_Digit_Determiner(Base : int, Exponent : int) -> int:
     """PRINTS LAST DIGIT OF EXPONENTIAL RESULT :- Determines Last Digit of Result (Base ^ Exp)"""
     return 1 if Exponent==0 else MatN[(Base%10)][(Exponent%4)-1] if Base%10 not in [0,1,5,6] else Base%10
@@ -153,7 +152,7 @@ def Last_Digit_Determiner(Base : int, Exponent : int) -> int:
 
 
 # METHOD 12 :
-@mngr.MathDecor
+@decor.MathDecor
 def Josephus_Problem(Step : int, Sequence : list) -> int:
     """JOSEPHUS PROBLEM :- Theoretical problem related to a certain counting-out game"""
     i = Step-1
@@ -171,7 +170,7 @@ def Josephus_Problem(Step : int, Sequence : list) -> int:
 # METHOD 15 :
 FibLib = {0:0}
 
-@mngr.MathDecor
+@decor.MathDecor
 def Fibonacci(n : int) -> int:
     """FIBONACCI :- Provides fibonacci result upto 998
     n -> depicts element position in the fibonacci sequence
@@ -184,7 +183,7 @@ def Fibonacci(n : int) -> int:
 
 
 # METHOD 16 :
-@mngr.MathDecor
+@decor.MathDecor
 def ModAll(List : list, Number : int) -> list:
     """MODALL :- Performs modulus(%) operation on given elements in 'List' w.r.t. 'Number'"""
     return [i%Number for i in List]

@@ -1,87 +1,33 @@
-{% load static %}
-<!doctype html>
-<html lang="en">
-
-<head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-
-  <!-- jquery -->
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js" defer></script>
-
-  <!-- Custom js & css -->
-  <link rel="stylesheet" href="{% static 'style.css' %}">
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% include "base.html" %}
 
 
-  {% block scripts %}
-  {% endblock scripts %}
+{% block content %}
+<div class="mainsection row">
+  <section class="sidebar col-3">
+    {{links|safe}}
+  </section>
 
-  <title>{% block title %}{% endblock title %}</title>
-</head>
+  <section class="maindiv col-9">
+    <div class="breadcrumbs">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item BC"><a href="{% url 'home' %}">Home</a></li>
+          {% block bread %}
+          {% endblock bread %}
+        </ol>
+      </nav>
+    </div>
+    <div class="home-div">
+      <i class="fa fa-book"></i>
+      <p>Academics</p>
+    </div>
+  </section>
 
-<body>
-  {% include 'navbar.html' %}
-  <div class="mainsection container-fluid">
-    <section class="sidebar">
-      {% for key, value in links.items %}
-      <div class="dropdowns">
-        <button class="btn Subjects" id="btn-{{key}}" onclick="DropDownToggle('{{key}}')">{{ key }}</button>
-        {% if value %}
-        <ul class="menu" id="list-{{key}}">
-          {% for link in value %}
-            <li class="item"><a href="#">{{link}}</a></li>
-          {% endfor %}
-        </ul>
-        {% endif %}
-      </div>
-      {% endfor %}
+  <!-- <section class="ads col-4">
+    <h1>ADS</h1>
+  </section> -->
+</div>
 
-    </section>
-    <section class="maindiv">
-      <div class="breadcrumbs">
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item BC"><a href="{% url 'home' %}">Home</a></li>
-            {% block bread %}
-            {% endblock bread %}
-          </ol>
-        </nav>
-      </div>
-      {% block content %}
-      <div class="home-div">
-        <i class="fa fa-book"></i>
-        <p>Academics</p>
-      </div>
-      {% endblock content %}
-    </section>
-    <section class="ads">
-      <h1>ADS</h1>
-    </section>
-  </div>
-  <div class="footerdiv">
-    <ul class="footer">
-      <li class="contactlink"><i class="fa fa-instagram"></i>Instagram</li>
-      <li class="contactlink"><i class="fa fa-whatsapp"></i>WhatsApp</li>
-      <li class="contactlink"><i class="fa fa-envelope"></i>Email</li>
-      <li class="contactlink"><i class="fa fa-twitter"></i>Twitter</li>
-      <li class="contactlink"><i class="fa fa-facebook"></i>Facebook</li>
-    </ul>
-  </div>
+{% include 'footer.html' %}
 
-
-  <!-- Bootstrap js -->
-
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js"></script>
-  <script src="{% static 'js/index.js' %}"></script>
-</body>
-
-</html>
+{% endblock content %}

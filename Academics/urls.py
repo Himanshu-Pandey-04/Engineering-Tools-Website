@@ -16,9 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from .views import *
+from users.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name='home'),
+    path('email/', contactus, name='email'),
+    path('signup/', SignUp, name='sign_up'),
+    path('login/', Login, name='login'),
+    path('logout/', Logout, name='logout'),
     path('<str:subName>/<str:funcName>/', calculation, name='subjectTopics'),
 ]

@@ -1,30 +1,62 @@
+from django.contrib import messages
 from django.shortcuts import render
-from driver import GetDict
+from django.core.mail import send_mail, get_connection, EmailMessage
+from final import get_html
+from emails.models import Querie
+from users.models import Customer
 # Create your views here.
 
-# Func_Lib = { 
-#     "sieve": Sieve, "prime_factors": Prime_Factors, "prime_check": Prime_Check, "co_prime": Co_Prime, "signum": Signum, "chinese_remainder_theorem": Chinese_Remainder_Theorem, "euler_totient_function": Euler_Totient_Function, "inverse_euler_totient_function": Inverse_Euler_Totient_Function, "determinant": Determinant, "last_digit_determiner": Last_Digit_Determiner, "josephus_problem": Josephus_Problem, "permutations": Permutations, "combinations": Combinations, "fibonacci": Fibonacci, "modall": ModAll 
-# }
-
+code = get_html()
 
 def home(request):
     context = {
-        'links': GetDict(),
+        'links': code,
     }
     return render(request, 'index.html', context)
 
+# def contact(request):
+#     if request.method == "POST":
+#         # connection = get_connection()
+#         # connection.open()
+#         message_query = request.POST['query']
+#         message_email = request.POST['email']
+#         send_mail("Customer query", message_query, message_email, ['janhavihimanshu@gmail.com'], fail_silently=False)
+#         # connection.close()
+#     return render(request, 'email.html', {})
+
+def contactus(request):
+    if request.method == 'POST':
+        fname = request.POST.get('fname')
+        lname = request.POST.get('lname')
+        message_query = request.POST.get('query')
+        message_email = request.POST.get('email')
+        try:
+            user = Customer.objects.filter(username=request.user.username).get()
+            email = Querie.objects.create(fname=fname, lname=lname, email=message_email, QueryDesc=message_query)
+            user.queries.add(email)
+        except Customer.DoesNotExist:
+            try:
+                email = Querie.objects.filter(email=message_email).get()
+                messages.error(request, "Sorry you can only make one query without an account.")
+            except Querie.DoesNotExist:
+                email = Querie.objects.create(fname=fname, lname=lname, email=message_email, QueryDesc=message_query)
+        context = {
+            'email' : email,
+            }
+
+    return render(request, 'email.html', context)
 
 def calculation(request, subName, funcName):
     # result, breadcrumbs, code, number = [], [], [], []
     # breadcrumbs.append(subName)
     # breadcrumbs.append(funcName)
-    # for key, value in getDict[subName][funcName]['params'].items():
+    # for key, value in dictionary[subName][funcName]['params'].items():
     #     code.append(f'<input name="{key}" type="{value}"/><br>')
     # if request.method == 'POST':
-    #     for key, value in getDict[subName][funcName]['params'].items():
+    #     for key, value in dictionary[subName][funcName]['params'].items():
     #         number.append(request.POST[key])
     #     print(type(number[0]))
-    #     result = getFunc[funcName](*number)
+    #     result = funclib[funcName](*number)
     # context = {
     #     'htmlcode': code,
     #     'result': result,

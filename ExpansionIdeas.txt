@@ -1,0 +1,2 @@
+account, workers
+workers will be given points on basis of which their reputation would increase

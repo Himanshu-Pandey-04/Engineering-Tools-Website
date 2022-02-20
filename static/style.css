@@ -1,7 +1,14 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 body {
     width: 100%;
     height: 100%;
+    margin: 0;
+    padding: 0;
     min-width: 600px;
     display: inline-block;
 }
@@ -9,24 +16,41 @@ body {
 /* #region Navbar */
 
 .navbar {
+    overflow: hidden;
     width: 100%;
     height: 70px;
-    background-color: black;
     color: white;
     position: fixed;
     z-index: 2;
 }
 
-.navbar a {
+.nav {
+    padding: 0px 20px;
+    display: flex;
+}
+
+.nav a {
     color: white;
     font-size: 30px;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding: 0px 20px;
     /* border: 1px solid black; */
+}
+
+.list {
+    display: flex;
+    overflow: hidden;
+}
+
+.search {
+    background-color: white;
+    margin: 0px 10px;
+    border-radius: 50px;
+    border: 2px solid black;
 }
 
 .search-input {
     border-radius: 50px;
+    border: none;
 }
 
 .search-btn {
@@ -35,13 +59,22 @@ body {
     border-radius: 50px;
 }
 
+.search-btn:hover {
+    background-color: black;
+    color: white;
+}
+
+.signup {
+    margin: 0px 10px;
+}
+
 /* #endregion */
 
 
 /* #region Sidebar */
 
 .sidebar {
-    width: 20vw;
+    /* width: 20%; */
     height: 100%;
     padding: 15px 20px;
     color: white;
@@ -71,7 +104,7 @@ body {
     width: 100%;
     height: 100%;
     padding: 0px;
-    display: none;
+     
     list-style: none;
     /* border: 1px solid white; */
 }
@@ -114,7 +147,7 @@ body {
 }
 
 .maindiv {
-    width: 55vw;
+    /* width: 55%; */
     height: 100%;
     /* border: 1px solid black; */
     overflow: auto;
@@ -127,6 +160,7 @@ body {
     padding-top: 15px;
     padding-left: 25px;
     border: 1px solid black;
+    width: 100%;
 }
 
 .BC a {
@@ -149,7 +183,7 @@ body {
 /* #region Ads */
 
 .ads {
-    width: 25vw;
+    /* width: 25%; */
     height: 100%;
     /* border: 1px solid black; */
     float: right;
@@ -168,20 +202,21 @@ body {
 
 @media screen and (max-height: 600px) {
     .mainsection {
-        height: calc(100vh-70px);
+        height: calc(100%-70px);
         overflow-y: auto;
     }
     .maindiv {
         height: 100%;
         margin: 0;
         padding: 0;
-        /* border: 1px solid black; */
         overflow: auto;
     }
-    /* .ads {
-        width: 100%;
-        height: 100%;
-    } */
+}
+
+@media screen and (max-width: 650px) {
+    .list {
+         
+    }
 }
 
 @media screen and (max-width: 1100px) {
@@ -190,7 +225,7 @@ body {
         overflow-x: auto;
     }
     .sidebar {
-        /* display: none; */
+        /*   */
         width: 100%;
         margin-bottom: 20px;
     }
@@ -214,11 +249,9 @@ body {
 
 /* #region Footer */
 
-.footer {
+.footerdiv {
     width: 100%;
     height: 100%;
-    list-style: none;
-    /* display: inline-flex; */
     background-color: #212529;
     color: white;
     font-size: 20px;
@@ -226,14 +259,40 @@ body {
     padding: 0px;
 }
 
-.footer i {
+.contacts {
+    padding: 20px 20px;
+    padding-top: 10%;
+    justify-self: center;
+}
+
+.contacts h4 {
+    text-align: center;
+}
+
+.contacts ul {
+    width: 100%;
+    list-style: none;
+    padding: 10px 10vw;
+}
+
+.contacts ul i {
     font-size: 24px;
     padding: 0px 20px;
 }
 
 .contactlink {
     padding: 10px;
-    /* text-align: center; */
+    text-align: center;
+}
+
+.contactlink a {
+    text-decoration: none;
+    color: white;
+}
+
+.form-submit {
+    margin: 10px 0px;
+    margin-bottom: 20px;
 }
 
 /* #endregion */

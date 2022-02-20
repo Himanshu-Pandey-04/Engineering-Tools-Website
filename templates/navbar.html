@@ -1,9 +1,12 @@
 <nav class="navbar navbar-brand bg-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand">Academics</a>
-      <form class="d-flex">
+  <nav class="navbar nav">
+    <a href="{% url 'home' %}" class="navbar-brand">Academics</a>
+    <div class="list">
+      <form class="d-flex search">
         <input class="form-control me-2 search-input" type="search" placeholder="Search" aria-label="Search">
         <button class="btn search-btn" type="submit">Search</button>
       </form>
+      <button href="{% url 'sign_up' %}" class="btn search-btn signup">Sign Up</button>
     </div>
   </nav>
+</nav>
