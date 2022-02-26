@@ -1,19 +1,15 @@
-{% include "base.html" %}
-
-
-{% block content %}
+{% include "base.html" %} {% block content %}
 <div class="mainsection row">
-  <section class="sidebar col-3">
-    {{links|safe}}
-  </section>
+  <section class="sidebar col-3">{{links|safe}}</section>
 
   <section class="maindiv col-9">
     <div class="breadcrumbs">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item BC"><a href="{% url 'home' %}">Home</a></li>
-          {% block bread %}
-          {% endblock bread %}
+          <li class="breadcrumb-item BC">
+            <a href="{% url 'home' %}">Home</a>
+          </li>
+          {% block bread %} {% endblock bread %}
         </ol>
       </nav>
     </div>
@@ -27,7 +23,4 @@
     <h1>ADS</h1>
   </section> -->
 </div>
-
-{% include 'footer.html' %}
-
-{% endblock content %}
+{% include 'footer.html' %} {% endblock content %}

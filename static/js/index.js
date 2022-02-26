@@ -33,8 +33,33 @@
 // console.log(code);
 // ele.innerHTML += code;
 
+let toolbar = document.getElementsByClassName("toolbar")[0];
+let closeBtn = document.getElementById("tool-btn");
+let searchBtn = document.getElementsByClassName("bx-search")[0];
+
+closeBtn.addEventListener("click", () => {
+  alert('hi');
+  toolbar.classList.toggle("open");
+  menuBtnChange();
+});
+
+searchBtn.addEventListener("click", () => {
+  alert('hi');
+  toolbar.classList.toggle("open");
+  menuBtnChange();
+});
+
+function menuBtnChange() {
+  alert('Hi');
+  if (toolbar.classList.contains("open")) {
+    closeBtn.classList.replace("bx-menu", "bx-menu-alt-right"); //replacing the iocns class
+  } else {
+    closeBtn.classList.replace("bx-menu-alt-right", "bx-menu"); //replacing the iocns class
+  }
+}
+
+
 function DropDownToggle(key) {
-  button = document.getElementById(`btn-${key}`);
   list = document.getElementById(`list-${key}`);
   if (list.style.display != 'none') list.style.display = 'none'; 
   else list.style.display = 'block';

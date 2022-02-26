@@ -1,0 +1,1010 @@
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
+
+  .toolbar {
+    position: fixed;
+    left: 0;
+    top: 9.9vh;
+    height: 40px;
+    width: 100px;
+    background: #000000;
+    padding: 5px;
+    z-index: 99;
+    transition: all 0.3s ease;
+    border-radius: 0vh 3vh 3vh 0vh;
+    overflow: hidden;
+  }
+
+  .toolbar.open {
+    height: 90%;
+    width: 60vh;
+  }
+
+  #tool-nav {
+    width: 100%;
+    height: 25px;
+    border-radius: 3vh;
+    padding: 0px 3px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #tool-nav #tool-btn {
+    margin-top: 2px;
+    transition: all 0.4s ease;
+    cursor: pointer;
+    color: white;
+    font-size: 2.4ch;
+    font-weight: 500;
+    font-family: "Poppins", sans-serif;
+  }
+
+  .toolbar .nav-list {
+    background-color: inherit;
+    margin-top: 20px;
+    height: 100%;
+    display: none;
+    overflow: auto;
+    padding-right: 5px;
+    --parent-padding: 5px;
+    --parent-margin: 5px;
+  }
+
+  .nav-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .toolbar.open .nav-list {
+    display: block;
+  }
+
+  .option {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    margin: 8px 0;
+    padding-left: 5px;
+    align-items: center;
+    width: inherit;
+    height: 40px;
+    font-size: 2.5vh;
+    font-weight: 500;
+    color: #fff;
+    background-color: rgb(0, 0, 0);
+    white-space: nowrap;
+    transition: 0.4s;
+    text-overflow: ellipsis;
+    border-radius: 12px;
+  }
+
+  .option:hover {
+    background: rgb(255, 255, 255);
+    font-weight: 600;
+    color: rgb(0, 0, 0);
+  }
+
+  .lvl-1 {
+    margin-left: var(--parent-margin);
+    padding-left: var(--parent-padding);
+  }
+
+  .lvl-2 {
+    margin-left: calc(var(--parent-margin) + 10px);
+    padding-left: calc(var(--parent-padding) + 5px);
+  }
+
+  .lvl-3 {
+    margin-left: calc(var(--parent-margin) + 20px);
+    padding-left: calc(var(--parent-padding) + 10px);
+  }
+
+  .lvl-4 {
+    margin-left: calc(var(--parent-margin) + 30px);
+    padding-left: calc(var(--parent-padding) + 15px);
+  }
+
+  .lvl-5 {
+    margin-left: calc(var(--parent-margin) + 40px);
+    padding-left: calc(var(--parent-padding) + 20px);
+  }
+
+  .funcs {
+    display: flex;
+    text-decoration: none;
+    height: 100%;
+    align-items: center;
+    border-radius: 12px;
+    transition: all 0.4s ease;
+    /* background: #191733; */
+    color: rgb(153, 0, 255);
+    border-radius: 12px;
+    font-weight: 700;
+  }
+
+  .funcs:hover {
+    text-decoration: none;
+    font-weight: 700;
+    background-color: rgb(153, 0, 255);
+    color: black;
+  }
+</style>
+
+<div class="toolbar">
+  <div id="tool-nav">
+    <i class="bx bx-menu" id="tool-btn"> Tools</i>
+  </div>
+  <ul class="nav-list">
+    <li>
+      <span
+        class="option lvl-1"
+        onclick="DropDownToggle('Algorithms')"
+        title="Algorithms"
+        >Algorithms</span
+      >
+      <ul id="list-Algorithms">
+        <li>
+          <span
+            class="option lvl-2"
+            onclick="DropDownToggle('Linear')"
+            title="Linear"
+            >Linear</span
+          >
+          <ul id="list-Linear"></ul>
+        </li>
+        <li>
+          <span
+            class="option lvl-2"
+            onclick="DropDownToggle('Non Linear')"
+            title="Non Linear"
+            >Non Linear</span
+          >
+          <ul id="list-Non Linear">
+            <li>
+              <span
+                class="option lvl-3"
+                onclick="DropDownToggle('Graphs')"
+                title="Graphs"
+                >Graphs</span
+              >
+              <ul id="list-Graphs"></ul>
+            </li>
+            <li>
+              <span
+                class="option lvl-3"
+                onclick="DropDownToggle('Trees')"
+                title="Trees"
+                >Trees</span
+              >
+              <ul id="list-Trees">
+                <li>
+                  <span
+                    class="option lvl-4"
+                    onclick="DropDownToggle('Binary Trees')"
+                    title="Binary Trees"
+                    >Binary Trees</span
+                  >
+                  <ul id="list-Binary Trees"></ul>
+                </li>
+                <li>
+                  <span
+                    class="option lvl-4"
+                    onclick="DropDownToggle('Tries')"
+                    title="Tries"
+                    >Tries</span
+                  >
+                  <ul id="list-Tries">
+                    <a
+                      href="#"
+                      class="option lvl-5 funcs"
+                      onclick="OpenTool('$funcName$')"
+                      title="Reach"
+                    >
+                      Reach
+                    </a>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <span class="option lvl-1" onclick="DropDownToggle('Basic')" title="Basic"
+        >Basic</span
+      >
+      <ul id="list-Basic">
+        <li>
+          <span
+            class="option lvl-2"
+            onclick="DropDownToggle('Calculator')"
+            title="Calculator"
+            >Calculator</span
+          >
+          <ul id="list-Calculator">
+            <a
+              href="#"
+              class="option lvl-3 funcs"
+              onclick="OpenTool('$funcName$')"
+              title="Calculator"
+            >
+              Calculator
+            </a>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <span
+        class="option lvl-1"
+        onclick="DropDownToggle('Competitive Programming')"
+        title="Competitive Programming"
+        >Competitive Programming</span
+      >
+      <ul id="list-Competitive Programming"></ul>
+    </li>
+    <li>
+      <span
+        class="option lvl-1"
+        onclick="DropDownToggle('Computer Networks')"
+        title="Computer Networks"
+        >Computer Networks</span
+      >
+      <ul id="list-Computer Networks">
+        <li>
+          <span
+            class="option lvl-2"
+            onclick="DropDownToggle('Error Control')"
+            title="Error Control"
+            >Error Control</span
+          >
+          <ul id="list-Error Control">
+            <a
+              href="#"
+              class="option lvl-3 funcs"
+              onclick="OpenTool('$funcName$')"
+              title="CRC Decoder"
+            >
+              CRC Decoder </a
+            ><a
+              href="#"
+              class="option lvl-3 funcs"
+              onclick="OpenTool('$funcName$')"
+              title="CRC Encoder"
+            >
+              CRC Encoder </a
+            ><a
+              href="#"
+              class="option lvl-3 funcs"
+              onclick="OpenTool('$funcName$')"
+              title="Hamming Distance (HD)"
+            >
+              Hamming Distance (HD) </a
+            ><a
+              href="#"
+              class="option lvl-3 funcs"
+              onclick="OpenTool('$funcName$')"
+              title="MHD ED EC"
+            >
+              MHD ED EC </a
+            ><a
+              href="#"
+              class="option lvl-3 funcs"
+              onclick="OpenTool('$funcName$')"
+              title="1s Comp CheckSum Checker"
+            >
+              1s Comp CheckSum Checker </a
+            ><a
+              href="#"
+              class="option lvl-3 funcs"
+              onclick="OpenTool('$funcName$')"
+              title="1s Comp CheckSum Generator"
+            >
+              1s Comp CheckSum Generator
+            </a>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <span
+        class="option lvl-1"
+        onclick="DropDownToggle('Data Structures')"
+        title="Data Structures"
+        >Data Structures</span
+      >
+      <ul id="list-Data Structures">
+        <li>
+          <span
+            class="option lvl-2"
+            onclick="DropDownToggle('Linear')"
+            title="Linear"
+            >Linear</span
+          >
+          <ul id="list-Linear">
+            <li>
+              <span
+                class="option lvl-3"
+                onclick="DropDownToggle('Linked Lists')"
+                title="Linked Lists"
+                >Linked Lists</span
+              >
+              <ul id="list-Linked Lists"></ul>
+            </li>
+            <li>
+              <span
+                class="option lvl-3"
+                onclick="DropDownToggle('Queues')"
+                title="Queues"
+                >Queues</span
+              >
+              <ul id="list-Queues">
+                <li>
+                  <span
+                    class="option lvl-4"
+                    onclick="DropDownToggle('Circular Queue')"
+                    title="Circular Queue"
+                    >Circular Queue</span
+                  >
+                  <ul id="list-Circular Queue"></ul>
+                </li>
+                <li>
+                  <span
+                    class="option lvl-4"
+                    onclick="DropDownToggle('Dequeue')"
+                    title="Dequeue"
+                    >Dequeue</span
+                  >
+                  <ul id="list-Dequeue"></ul>
+                </li>
+                <li>
+                  <span
+                    class="option lvl-4"
+                    onclick="DropDownToggle('Priority Queue')"
+                    title="Priority Queue"
+                    >Priority Queue</span
+                  >
+                  <ul id="list-Priority Queue"></ul>
+                </li>
+                <li>
+                  <span
+                    class="option lvl-4"
+                    onclick="DropDownToggle('Queue')"
+                    title="Queue"
+                    >Queue</span
+                  >
+                  <ul id="list-Queue"></ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <span
+                class="option lvl-3"
+                onclick="DropDownToggle('Stacks')"
+                title="Stacks"
+                >Stacks</span
+              >
+              <ul id="list-Stacks"></ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <span
+            class="option lvl-2"
+            onclick="DropDownToggle('Non Linear')"
+            title="Non Linear"
+            >Non Linear</span
+          >
+          <ul id="list-Non Linear">
+            <li>
+              <span
+                class="option lvl-3"
+                onclick="DropDownToggle('Graphs')"
+                title="Graphs"
+                >Graphs</span
+              >
+              <ul id="list-Graphs"></ul>
+            </li>
+            <li>
+              <span
+                class="option lvl-3"
+                onclick="DropDownToggle('Heaps')"
+                title="Heaps"
+                >Heaps</span
+              >
+              <ul id="list-Heaps"></ul>
+            </li>
+            <li>
+              <span
+                class="option lvl-3"
+                onclick="DropDownToggle('Trees')"
+                title="Trees"
+                >Trees</span
+              >
+              <ul id="list-Trees">
+                <li>
+                  <span
+                    class="option lvl-4"
+                    onclick="DropDownToggle('AVL Tree')"
+                    title="AVL Tree"
+                    >AVL Tree</span
+                  >
+                  <ul id="list-AVL Tree"></ul>
+                </li>
+                <li>
+                  <span
+                    class="option lvl-4"
+                    onclick="DropDownToggle('Binary Tree')"
+                    title="Binary Tree"
+                    >Binary Tree</span
+                  >
+                  <ul id="list-Binary Tree"></ul>
+                </li>
+                <li>
+                  <span
+                    class="option lvl-4"
+                    onclick="DropDownToggle('BST')"
+                    title="BST"
+                    >BST</span
+                  >
+                  <ul id="list-BST"></ul>
+                </li>
+                <li>
+                  <span
+                    class="option lvl-4"
+                    onclick="DropDownToggle('N-ary Tree')"
+                    title="N-ary Tree"
+                    >N-ary Tree</span
+                  >
+                  <ul id="list-N-ary Tree"></ul>
+                </li>
+                <li>
+                  <span
+                    class="option lvl-4"
+                    onclick="DropDownToggle('Red Black Tree')"
+                    title="Red Black Tree"
+                    >Red Black Tree</span
+                  >
+                  <ul id="list-Red Black Tree"></ul>
+                </li>
+                <li>
+                  <span
+                    class="option lvl-4"
+                    onclick="DropDownToggle('Trie')"
+                    title="Trie"
+                    >Trie</span
+                  >
+                  <ul id="list-Trie">
+                    <a
+                      href="#"
+                      class="option lvl-5 funcs"
+                      onclick="OpenTool('$funcName$')"
+                      title="Reach"
+                    >
+                      Reach
+                    </a>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <span
+        class="option lvl-1"
+        onclick="DropDownToggle('Decorators')"
+        title="Decorators"
+        >Decorators</span
+      >
+      <ul id="list-Decorators">
+        <a
+          href="#"
+          class="option lvl-2 funcs"
+          onclick="OpenTool('$funcName$')"
+          title="MathDecor"
+        >
+          MathDecor
+        </a>
+      </ul>
+    </li>
+    <li>
+      <span class="option lvl-1" onclick="DropDownToggle('DS')" title="DS"
+        >DS</span
+      >
+      <ul id="list-DS">
+        <li>
+          <span
+            class="option lvl-2"
+            onclick="DropDownToggle('Strings')"
+            title="Strings"
+            >Strings</span
+          >
+          <ul id="list-Strings">
+            <li>
+              <span
+                class="option lvl-3"
+                onclick="DropDownToggle('Add Ons')"
+                title="Add Ons"
+                >Add Ons</span
+              >
+              <ul id="list-Add Ons">
+                <a
+                  href="#"
+                  class="option lvl-4 funcs"
+                  onclick="OpenTool('$funcName$')"
+                  title="Split"
+                >
+                  Split </a
+                ><a
+                  href="#"
+                  class="option lvl-4 funcs"
+                  onclick="OpenTool('$funcName$')"
+                  title="Split Older"
+                >
+                  Split Older </a
+                ><a
+                  href="#"
+                  class="option lvl-4 funcs"
+                  onclick="OpenTool('$funcName$')"
+                  title="MakePairs"
+                >
+                  MakePairs
+                </a>
+              </ul>
+            </li>
+            <li>
+              <span
+                class="option lvl-3"
+                onclick="DropDownToggle('Data Cleaner')"
+                title="Data Cleaner"
+                >Data Cleaner</span
+              >
+              <ul id="list-Data Cleaner">
+                <a
+                  href="#"
+                  class="option lvl-4 funcs"
+                  onclick="OpenTool('$funcName$')"
+                  title="Clean"
+                >
+                  Clean </a
+                ><a
+                  href="#"
+                  class="option lvl-4 funcs"
+                  onclick="OpenTool('$funcName$')"
+                  title="Clean Resume"
+                >
+                  Clean Resume
+                </a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <span
+        class="option lvl-1"
+        onclick="DropDownToggle('Logic Design And Computer Organization')"
+        title="Logic Design And Computer Organization"
+        >Logic Design And Computer Organization</span
+      >
+      <ul id="list-Logic Design And Computer Organization">
+        <li>
+          <span
+            class="option lvl-2"
+            onclick="DropDownToggle('Binary Arithmetic And Boolean Algebra')"
+            title="Binary Arithmetic And Boolean Algebra"
+            >Binary Arithmetic And Boolean Algebra</span
+          >
+          <ul id="list-Binary Arithmetic And Boolean Algebra">
+            <a
+              href="#"
+              class="option lvl-3 funcs"
+              onclick="OpenTool('$funcName$')"
+              title="BCD To Decimal"
+            >
+              BCD To Decimal </a
+            ><a
+              href="#"
+              class="option lvl-3 funcs"
+              onclick="OpenTool('$funcName$')"
+              title="BCD To Ex3"
+            >
+              BCD To Ex3 </a
+            ><a
+              href="#"
+              class="option lvl-3 funcs"
+              onclick="OpenTool('$funcName$')"
+              title="Binary Adder"
+            >
+              Binary Adder </a
+            ><a
+              href="#"
+              class="option lvl-3 funcs"
+              onclick="OpenTool('$funcName$')"
+              title="Binary Division"
+            >
+              Binary Division </a
+            ><a
+              href="#"
+              class="option lvl-3 funcs"
+              onclick="OpenTool('$funcName$')"
+              title="Binary Subtractor"
+            >
+              Binary Subtractor </a
+            ><a
+              href="#"
+              class="option lvl-3 funcs"
+              onclick="OpenTool('$funcName$')"
+              title="Binary To Gray"
+            >
+              Binary To Gray </a
+            ><a
+              href="#"
+              class="option lvl-3 funcs"
+              onclick="OpenTool('$funcName$')"
+              title="Compliments"
+            >
+              Compliments </a
+            ><a
+              href="#"
+              class="option lvl-3 funcs"
+              onclick="OpenTool('$funcName$')"
+              title="Decimal To BCD"
+            >
+              Decimal To BCD </a
+            ><a
+              href="#"
+              class="option lvl-3 funcs"
+              onclick="OpenTool('$funcName$')"
+              title="Decimal To X"
+            >
+              Decimal To X </a
+            ><a
+              href="#"
+              class="option lvl-3 funcs"
+              onclick="OpenTool('$funcName$')"
+              title="NS Code Converter"
+            >
+              NS Code Converter </a
+            ><a
+              href="#"
+              class="option lvl-3 funcs"
+              onclick="OpenTool('$funcName$')"
+              title="Propositional Truth Table"
+            >
+              Propositional Truth Table </a
+            ><a
+              href="#"
+              class="option lvl-3 funcs"
+              onclick="OpenTool('$funcName$')"
+              title="X To Decimal"
+            >
+              X To Decimal </a
+            ><a
+              href="#"
+              class="option lvl-3 funcs"
+              onclick="OpenTool('$funcName$')"
+              title="1s Compliment"
+            >
+              1s Compliment </a
+            ><a
+              href="#"
+              class="option lvl-3 funcs"
+              onclick="OpenTool('$funcName$')"
+              title="2s Compliment"
+            >
+              2s Compliment
+            </a>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <span class="option lvl-1" onclick="DropDownToggle('MATH')" title="MATH"
+        >MATH</span
+      >
+      <ul id="list-MATH">
+        <li>
+          <span
+            class="option lvl-2"
+            onclick="DropDownToggle('Combinatorics')"
+            title="Combinatorics"
+            >Combinatorics</span
+          >
+          <ul id="list-Combinatorics">
+            <li>
+              <span
+                class="option lvl-3"
+                onclick="DropDownToggle('Permutations And Combinations')"
+                title="Permutations And Combinations"
+                >Permutations And Combinations</span
+              >
+              <ul id="list-Permutations And Combinations">
+                <a
+                  href="#"
+                  class="option lvl-4 funcs"
+                  onclick="OpenTool('$funcName$')"
+                  title="Combinations"
+                >
+                  Combinations </a
+                ><a
+                  href="#"
+                  class="option lvl-4 funcs"
+                  onclick="OpenTool('$funcName$')"
+                  title="Permutations"
+                >
+                  Permutations
+                </a>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <span
+            class="option lvl-2"
+            onclick="DropDownToggle('Expansions')"
+            title="Expansions"
+            >Expansions</span
+          >
+          <ul id="list-Expansions"></ul>
+        </li>
+        <li>
+          <span
+            class="option lvl-2"
+            onclick="DropDownToggle('Fusion')"
+            title="Fusion"
+            >Fusion</span
+          >
+          <ul id="list-Fusion">
+            <a
+              href="#"
+              class="option lvl-3 funcs"
+              onclick="OpenTool('$funcName$')"
+              title="Chinese Remainder Theorem"
+            >
+              Chinese Remainder Theorem </a
+            ><a
+              href="#"
+              class="option lvl-3 funcs"
+              onclick="OpenTool('$funcName$')"
+              title="Co Prime"
+            >
+              Co Prime </a
+            ><a
+              href="#"
+              class="option lvl-3 funcs"
+              onclick="OpenTool('$funcName$')"
+              title="Congruent Modulo"
+            >
+              Congruent Modulo </a
+            ><a
+              href="#"
+              class="option lvl-3 funcs"
+              onclick="OpenTool('$funcName$')"
+              title="Determinant"
+            >
+              Determinant </a
+            ><a
+              href="#"
+              class="option lvl-3 funcs"
+              onclick="OpenTool('$funcName$')"
+              title="Euler Totient Function"
+            >
+              Euler Totient Function </a
+            ><a
+              href="#"
+              class="option lvl-3 funcs"
+              onclick="OpenTool('$funcName$')"
+              title="Fibonacci"
+            >
+              Fibonacci </a
+            ><a
+              href="#"
+              class="option lvl-3 funcs"
+              onclick="OpenTool('$funcName$')"
+              title="Inverse Euler Totient Function"
+            >
+              Inverse Euler Totient Function </a
+            ><a
+              href="#"
+              class="option lvl-3 funcs"
+              onclick="OpenTool('$funcName$')"
+              title="Josephus Problem"
+            >
+              Josephus Problem </a
+            ><a
+              href="#"
+              class="option lvl-3 funcs"
+              onclick="OpenTool('$funcName$')"
+              title="Last Digit Determiner"
+            >
+              Last Digit Determiner </a
+            ><a
+              href="#"
+              class="option lvl-3 funcs"
+              onclick="OpenTool('$funcName$')"
+              title="ModAll"
+            >
+              ModAll </a
+            ><a
+              href="#"
+              class="option lvl-3 funcs"
+              onclick="OpenTool('$funcName$')"
+              title="Prime Check"
+            >
+              Prime Check </a
+            ><a
+              href="#"
+              class="option lvl-3 funcs"
+              onclick="OpenTool('$funcName$')"
+              title="Prime Factors"
+            >
+              Prime Factors </a
+            ><a
+              href="#"
+              class="option lvl-3 funcs"
+              onclick="OpenTool('$funcName$')"
+              title="Sieve"
+            >
+              Sieve </a
+            ><a
+              href="#"
+              class="option lvl-3 funcs"
+              onclick="OpenTool('$funcName$')"
+              title="Signum"
+            >
+              Signum
+            </a>
+          </ul>
+        </li>
+        <li>
+          <span
+            class="option lvl-2"
+            onclick="DropDownToggle('More')"
+            title="More"
+            >More</span
+          >
+          <ul id="list-More">
+            <a
+              href="#"
+              class="option lvl-3 funcs"
+              onclick="OpenTool('$funcName$')"
+              title="AddNums"
+            >
+              AddNums
+            </a>
+          </ul>
+        </li>
+        <li>
+          <span
+            class="option lvl-2"
+            onclick="DropDownToggle('Randomizer')"
+            title="Randomizer"
+            >Randomizer</span
+          >
+          <ul id="list-Randomizer">
+            <a
+              href="#"
+              class="option lvl-3 funcs"
+              onclick="OpenTool('$funcName$')"
+              title="BiasedEvents"
+            >
+              BiasedEvents </a
+            ><a
+              href="#"
+              class="option lvl-3 funcs"
+              onclick="OpenTool('$funcName$')"
+              title="Random Dates"
+            >
+              Random Dates </a
+            ><a
+              href="#"
+              class="option lvl-3 funcs"
+              onclick="OpenTool('$funcName$')"
+              title="Random Element"
+            >
+              Random Element </a
+            ><a
+              href="#"
+              class="option lvl-3 funcs"
+              onclick="OpenTool('$funcName$')"
+              title="Random Range"
+            >
+              Random Range </a
+            ><a
+              href="#"
+              class="option lvl-3 funcs"
+              onclick="OpenTool('$funcName$')"
+              title="Shuffle Zip"
+            >
+              Shuffle Zip </a
+            ><a
+              href="#"
+              class="option lvl-3 funcs"
+              onclick="OpenTool('$funcName$')"
+              title="Shuffler"
+            >
+              Shuffler
+            </a>
+          </ul>
+        </li>
+        <li>
+          <span
+            class="option lvl-2"
+            onclick="DropDownToggle('Sequences And Series')"
+            title="Sequences And Series"
+            >Sequences And Series</span
+          >
+          <ul id="list-Sequences And Series">
+            <a
+              href="#"
+              class="option lvl-3 funcs"
+              onclick="OpenTool('$funcName$')"
+              title="APs Smallest Common Ele"
+            >
+              APs Smallest Common Ele
+            </a>
+          </ul>
+        </li>
+        <li>
+          <span
+            class="option lvl-2"
+            onclick="DropDownToggle('Sets')"
+            title="Sets"
+            >Sets</span
+          >
+          <ul id="list-Sets"></ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <span class="option lvl-1" onclick="DropDownToggle('OS')" title="OS"
+        >OS</span
+      >
+      <ul id="list-OS"></ul>
+    </li>
+    <li>
+      <span
+        class="option lvl-1"
+        onclick="DropDownToggle('Unit Converters')"
+        title="Unit Converters"
+        >Unit Converters</span
+      >
+      <ul id="list-Unit Converters"></ul>
+    </li>
+  </ul>
+</div>
+
+<script>
+  let toolbar = document.querySelector(".toolbar");
+  let closeBtn = document.querySelector("#tool-btn");
+  let searchBtn = document.querySelector(".bx-search");
+
+  closeBtn.addEventListener("click", () => {
+    toolbar.classList.toggle("open");
+    menuBtnChange();
+  });
+
+  searchBtn.addEventListener("click", () => {
+    toolbar.classList.toggle("open");
+    menuBtnChange();
+  });
+
+  function menuBtnChange() {
+    if (toolbar.classList.contains("open")) {
+      closeBtn.classList.replace("bx-menu", "bx-menu-alt-right"); //replacing the iocns class
+    } else {
+      closeBtn.classList.replace("bx-menu-alt-right", "bx-menu"); //replacing the iocns class
+    }
+  }
+</script>
